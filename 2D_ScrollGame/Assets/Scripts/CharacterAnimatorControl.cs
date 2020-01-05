@@ -72,6 +72,9 @@ public class CharacterAnimatorControl : MonoBehaviour
         m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
     }
 
+    /// <summary>
+    /// 空中か否か
+    /// </summary>
     private bool m_Aerial = false;
 
     public void Move(float move, bool jump)
