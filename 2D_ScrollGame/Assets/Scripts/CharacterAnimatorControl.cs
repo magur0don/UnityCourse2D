@@ -46,11 +46,18 @@ public class CharacterAnimatorControl : MonoBehaviour
     /// </summary>
     private bool m_FacingRight = true;
 
+
+    /// <summary>
+    /// キャラクターのCollider
+    /// </summary>
+    private Collider2D m_collider2D;
+
     private void Awake()
     {
         m_GroundCheck = transform.Find("GroundCheck");
         m_Anim = GetComponent<Animator>();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        m_collider2D = GetComponent<Collider2D>();
     }
 
     private void FixedUpdate()
@@ -77,7 +84,7 @@ public class CharacterAnimatorControl : MonoBehaviour
     /// </summary>
     private bool m_Aerial = false;
 
-    public void Move(float move, bool jump)
+    public void Move(float move, bool jump, bool damage = false)
     {
         if (m_Grounded)
         {
@@ -85,7 +92,7 @@ public class CharacterAnimatorControl : MonoBehaviour
             m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
             m_Aerial = false;
-            
+
             // キャラクターに速度を与える
             m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
