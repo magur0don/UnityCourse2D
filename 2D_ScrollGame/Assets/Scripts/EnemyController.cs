@@ -67,6 +67,8 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    PlayerController player = null;
+
     private void FixedUpdate()
     {
         //範囲の判定を円にしてキャストしたColliderがプレイヤーだったらそっちに行く
@@ -75,18 +77,36 @@ public class EnemyController : MonoBehaviour
         {
             if (colliders[i].gameObject.tag == "Player")
             {
-                //自分よりPlayerが左にいた場合は
-                if (colliders[i].gameObject.transform.position.x < this.transform.position.x)
+                if (player == null)
                 {
-                    m_MoveSpeed = -0.4f;
+                    player = colliders[i].gameObject.GetComponent<PlayerController>();
                 }
-                else
+
+                if (!player.m_damaged)
                 {
-                    m_MoveSpeed = 0.4f;
+
+                    //自分よりPlayerが左にいた場合は
+                    if (colliders[i].gameObject.transform.position.x < this.transform.position.x)
+                    {
+                        m_MoveSpeed = -0.4f;
+                    }
+                    else
+                    {
+                        m_MoveSpeed = 0.4f;
+                    }
                 }
             }
         }
         m_characterAnimatorControl.Move(m_MoveSpeed, false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.name.Equals("GroundCheck"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 }

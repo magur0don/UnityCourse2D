@@ -34,12 +34,12 @@ public class CharacterAnimatorControl : MonoBehaviour
     /// <summary>
     /// キャラクターのアニメーター
     /// </summary>
-    private Animator m_Anim;
+    public Animator m_Anim;
 
     /// <summary>
     /// キャラクターのRigidBody2D
     /// </summary>
-    private Rigidbody2D m_Rigidbody2D;
+    public Rigidbody2D m_Rigidbody2D;
 
     /// <summary>
     /// 右向きかどうか
