@@ -7,7 +7,6 @@ public class InGameResultState : IState
 {
     public void Enter()
     {
-        Debug.Log("aaaaaaa");
         InGameStateManager.Instance.GameState = InGameStateManager.GameStateProcessor.RESULT;
         SceneManager.sceneLoaded += GameSceneLoaded;
         SceneManager.LoadScene("GameEnd");

@@ -8,7 +8,6 @@ public class InGameInitState : IState
 
     public void Enter()
     {
-        Debug.Log(InGameStateManager.Instance.GameState);
         InGameStateManager.Instance.GameState = InGameStateManager.GameStateProcessor.START;
         InGameStateManager.Instance.StateMachine.SetState(InGameStateManager.GameStateProcessor.START);
     }
