@@ -8,12 +8,12 @@ public class MainGameTimer : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI m_TimerText;
 
-    [SerializeField]
-    private float m_TimeLimit = 60f;
-    
     // Update is called once per frame
     void Update()
     {
-        m_TimerText.text = string.Format("{0:00}", Mathf.Clamp(m_TimeLimit -= Time.deltaTime, 0, m_TimeLimit));
+        if (InGameStateManager.Instance.GameState == InGameStateManager.GameStateProcessor.GAMEMAIN)
+        {
+            m_TimerText.text = string.Format("{0:00}", Mathf.Clamp(InGameStateManager.Instance.GameTime -= Time.deltaTime, 0, InGameStateManager.Instance.GameTime));
+        }
     }
 }
