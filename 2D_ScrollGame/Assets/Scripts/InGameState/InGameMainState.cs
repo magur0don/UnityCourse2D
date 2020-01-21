@@ -18,6 +18,7 @@ public class InGameMainState : IState
     {
         if (InGameStateManager.Instance.GameTime <= 0)
         {
+            InGameStateManager.Instance.GameOver = true;
             InGameStateManager.Instance.StateMachine.SetState(InGameStateManager.GameStateProcessor.RESULT);
         }
     }
