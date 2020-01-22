@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class InGameSoundManager : MonoBehaviour
 {
@@ -19,11 +21,33 @@ public class InGameSoundManager : MonoBehaviour
     /// </summary>
     private Dictionary<string, AudioClip> m_AudioDictionary = new Dictionary<string, AudioClip>();
 
+    AssetBundle soundAssetBundle;
+
     private void Awake()
     {
         Instance = this;
 
-        var soundAssetBundle = AssetBundle.LoadFromFile("AssetBundles/StandaloneWindows/sounds/se");
+        StartCoroutine(GetSound());
+
+    }
+
+    public string AssetName;
+    
+    string path = "https://relaxed-hamilton-bf0135.netlify.com/WebGL/sounds/se";
+    IEnumerator GetSound()
+    {
+        using (UnityWebRequest uwr = UnityWebRequestAssetBundle.GetAssetBundle(path))
+        {
+            yield return uwr.SendWebRequest();
+            if (uwr.isNetworkError || uwr.isHttpError)
+            {
+                Debug.Log(uwr.error);
+            }
+            else
+            {
+                soundAssetBundle = DownloadHandlerAssetBundle.GetContent(uwr);
+            }
+        }
 
         var soundAssets = soundAssetBundle.LoadAllAssets<AudioClip>();
 
