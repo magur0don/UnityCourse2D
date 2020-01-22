@@ -107,6 +107,10 @@ public class PlayerController : MonoBehaviour
         // Hpが0を下回ったらGameObjectを消す
         if (hp <= 0)
         {
+            // 終了判定
+            InGameStateManager.Instance.GameOver = true;
+            InGameStateManager.Instance.GameState = InGameStateManager.GameStateProcessor.RESULT;
+            InGameStateManager.Instance.StateMachine.SetState( InGameStateManager.GameStateProcessor.RESULT);
             gameObject.SetActive(false);
         }
     }

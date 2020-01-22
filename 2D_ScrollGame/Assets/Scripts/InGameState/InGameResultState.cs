@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class InGameResultState : IState
 {
+    private bool gameOverResult = false;
+
     public void Enter()
     {
         InGameStateManager.Instance.GameState = InGameStateManager.GameStateProcessor.RESULT;
+        gameOverResult = InGameStateManager.Instance.GameOver;
         SceneManager.sceneLoaded += GameSceneLoaded;
         SceneManager.LoadScene("GameEnd");
     }
@@ -25,9 +28,9 @@ public class InGameResultState : IState
     {
         // シーン切り替え後のスクリプトを取得
         var gameManager = GameObject.Find("GameEndManager").GetComponent<GameEndManager>();
-
+        
         // データを渡す処理
-        gameManager.GameOver = InGameStateManager.Instance.GameOver;
+        gameManager.GameOver = gameOverResult;
 
         // イベントから削除
         SceneManager.sceneLoaded -= GameSceneLoaded;

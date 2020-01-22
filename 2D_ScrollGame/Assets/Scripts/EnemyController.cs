@@ -102,7 +102,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.name.Equals("GroundCheck"))
         {
             gameObject.SetActive(false);
