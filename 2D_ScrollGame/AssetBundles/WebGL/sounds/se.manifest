@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 29535203
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e6cb19afe48ccf840a103d8eb549f475
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+Assets:
+- Assets/Sounds/JumpSe.mp3
+- Assets/Sounds/StampSe.mp3
+Dependencies: []

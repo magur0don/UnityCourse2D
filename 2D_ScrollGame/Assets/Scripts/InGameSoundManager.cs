@@ -21,6 +21,9 @@ public class InGameSoundManager : MonoBehaviour
     /// </summary>
     private Dictionary<string, AudioClip> m_AudioDictionary = new Dictionary<string, AudioClip>();
 
+    /// <summary>
+    /// サウンドのアセットバンドル
+    /// </summary>
     AssetBundle soundAssetBundle;
 
     private void Awake()
@@ -30,10 +33,9 @@ public class InGameSoundManager : MonoBehaviour
         StartCoroutine(GetSound());
 
     }
-
-    public string AssetName;
     
     string path = "https://relaxed-hamilton-bf0135.netlify.com/WebGL/sounds/se";
+
     IEnumerator GetSound()
     {
         using (UnityWebRequest uwr = UnityWebRequestAssetBundle.GetAssetBundle(path))
